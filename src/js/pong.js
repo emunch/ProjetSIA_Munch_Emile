@@ -61,7 +61,7 @@
     scene.add(ambientLight);
 
 
-    const fps  = 10;
+    const fps  = 60;
     const slow = 1; // slow motion! 1: normal speed, 2: half speed...
     loop.dt       = 0,
     loop.now      = timestamp();
@@ -77,16 +77,13 @@
   function gameLoop() {
 
       requestAnimationFrame(gameLoop);
-      ball.position.x += params.speed;
-      if(ball.position.x > 20 || ball.position.x < -20){
-          params.speed = params.speed * -1
-      }
+     
       renderer.render(scene,camera);
 
       controls.update();
 
     // gestion de l'incrément du temps
-    /*loop.now = timestamp();
+    loop.now = timestamp();
     loop.dt = loop.dt + Math.min(1, (loop.now - loop.last) / 1000);
     while(loop.dt > loop.slowStep) {
       loop.dt = loop.dt - loop.slowStep;
@@ -95,16 +92,18 @@
     renderer.render(scene, camera);  // rendu de la scène
     loop.last = loop.now;
 
-    requestAnimationFrame(gameLoop); // relance la boucle du jeu
+    //requestAnimationFrame(gameLoop); // relance la boucle du jeu
 
     controls.update();
-    stats.update();*/
+    stats.update();
   }
 
-  /*function update(step) {
-		const angleIncr = Math.PI * 2 * step / 5 ; // une rotation complète en 5 secondes
-		ball.rotateY(angleIncr);
-  }*/
+  function update(step) {
+    ball.position.x += params.speed;
+    if(ball.position.x > 20 || ball.position.x < -20){
+        params.speed = params.speed * -1
+    }
+  }
 
   function resize() {
     w = container.clientWidth;
