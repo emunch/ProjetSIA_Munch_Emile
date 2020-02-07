@@ -3,8 +3,8 @@
   let container, w, h, scene, camera, controls, renderer, stats, ambientLight;
   let loop = {};
   var ball;
-  var x = 0;
- var axis =
+  var speed = 0.5;
+  var axis =
  [new THREE.Mesh(new THREE.CubeGeometry(10,0.2,0.2),new THREE.MeshBasicMaterial({color: "#5BAD46"})),
  new THREE.Mesh(new THREE.CubeGeometry(0.2,10,0.2), new THREE.MeshBasicMaterial({color:"#EE3A2F" })),
   new THREE.Mesh(new THREE.CubeGeometry(0.2,0.2,10),new THREE.MeshBasicMaterial({color:"#FFE560"}))]; //z
@@ -60,8 +60,8 @@
      ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.3)
     scene.add(ambientLight);
 
-/*
-    const fps  = 60;
+
+    const fps  = 10;
     const slow = 1; // slow motion! 1: normal speed, 2: half speed...
     loop.dt       = 0,
     loop.now      = timestamp();
@@ -70,23 +70,23 @@
     loop.step     = 1/loop.fps;
     loop.slow     = slow;
     loop.slowStep = loop.slow * loop.step;
-*/
+
     initGui();
   }
 
   function gameLoop() {
 
       requestAnimationFrame(gameLoop);
-
-      ball.position.x = Math.sin(x)*10;
-      //ball.position.y = Math.cos(x)*10;
-      x+= 0.01%360;
+      ball.position.x += params.speed;
+      if(ball.position.x > 20 || ball.position.x < -20){
+          params.speed = params.speed * -1
+      }
       renderer.render(scene,camera);
 
       controls.update();
-/*
+
     // gestion de l'incrément du temps
-    loop.now = timestamp();
+    /*loop.now = timestamp();
     loop.dt = loop.dt + Math.min(1, (loop.now - loop.last) / 1000);
     while(loop.dt > loop.slowStep) {
       loop.dt = loop.dt - loop.slowStep;
@@ -98,15 +98,13 @@
     requestAnimationFrame(gameLoop); // relance la boucle du jeu
 
     controls.update();
-    stats.update();
-
-    */
+    stats.update();*/
   }
 
-  function update(step) {
+  /*function update(step) {
 		const angleIncr = Math.PI * 2 * step / 5 ; // une rotation complète en 5 secondes
-		torus.rotateY(angleIncr);
-  }
+		ball.rotateY(angleIncr);
+  }*/
 
   function resize() {
     w = container.clientWidth;
