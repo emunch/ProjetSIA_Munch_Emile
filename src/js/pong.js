@@ -1,7 +1,9 @@
 
   window.addEventListener('load', go);
   window.addEventListener('resize', resize);
-
+  window.addEventListener('kepressed', function(evt){
+      input(evt);
+  });
   function go() {
     console.log("Go!");
     init();

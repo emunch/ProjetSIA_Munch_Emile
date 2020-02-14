@@ -3,8 +3,7 @@ var gui;
 
 var params = {
     axis_visible : false,
-    speedX: 0.5,
-    speedY:0.5,
+    speed: 2,
     ballRadius: 5
 };
 
@@ -16,8 +15,7 @@ document.addEventListener('keydown', function (event){
 function initGui(){
     var gui = new dat.GUI();
     gui.add(params, 'axis_visible').onChange(toggleAxis);
-    gui.add(params, 'speedX').min(0).step(0.1).onChange(upX);
-    gui.add(params, 'speedY').min(0).step(0.1).onChange(upY);
+    gui.add(params, 'speed').min(0).step(0.1).onChange(upX);
     gui.add(params, 'ballRadius').min(0).step(0.1).onChange(updateRadius)
 }
 
@@ -61,9 +59,5 @@ function updateRadius(){
 
 
 function upX(){
-    speedX = params.speedX;
-}
-
-function upY(){
-    speedY = params.speedY;
+    speed = params.speed;
 }
