@@ -1,16 +1,4 @@
 
-
-  let container, w, h, scene, camera, controls, renderer, stats, ambientLight;
-  let loop = {};
-  var ball;
-  var speed = 0.5;
-  var axis =
- [new THREE.Mesh(new THREE.CubeGeometry(10,0.2,0.2),new THREE.MeshBasicMaterial({color: "#5BAD46"})),
- new THREE.Mesh(new THREE.CubeGeometry(0.2,10,0.2), new THREE.MeshBasicMaterial({color:"#EE3A2F" })),
-  new THREE.Mesh(new THREE.CubeGeometry(0.2,0.2,10),new THREE.MeshBasicMaterial({color:"#FFE560"}))]; //z
-
-
-
   window.addEventListener('load', go);
   window.addEventListener('resize', resize);
 
@@ -28,10 +16,8 @@
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(75, w/h, 0.001, 100000);
-    camera.position.set(30, 0, 10);
-    camera.rotation.y = 30;
+    camera.position.set(0, 0, 320);
     //camera.lookAt(0,0,0);
-
     //controls.target = new THREE.Vector3(0, 0, 0.75);
     //controls.panSpeed = 0.4;
 
@@ -41,24 +27,37 @@
     renderer.setSize(w, h);
     container.appendChild(renderer.domElement);
 
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    //controls = new THREE.OrbitControls(camera, renderer.domElement);
 
     // add Stats.js - https://github.com/mrdoob/stats.js
     stats = new Stats();
     stats.domElement.style.position	= 'absolute';
     stats.domElement.style.bottom	= '0px';
     document.body.appendChild( stats.domElement );
-
-    // add some geometries
-    const geometry = new THREE.CubeGeometry(3,3,3);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    //var material = new THREE.MashFaceMaterial(cubeMaterials);
-    ball = new THREE.Mesh( geometry, material);
+    //add some geometries
+    const geometry = new THREE.SphereGeometry(params.ballRadius,20,20);
+    const material = new THREE.MeshLambertMaterial({ color: 0xD43001 });
+    ball = new THREE.Mesh(geometry, material);
+    ball.position.z = 5;
     scene.add(ball);
 
+
+    // // create a point light
+        pointLight = new THREE.PointLight(0xF8D898);
+
+        // set its position
+        pointLight.position.z = -1000;
+        pointLight.position.z = 1000;
+        pointLight.intensity = 2.9;
+        pointLight.distance = 10000;
+
+        // add to the scene
+        scene.add(pointLight);
     //ajout de lumièreq
-     ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.3)
-    scene.add(ambientLight);
+        ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.3)
+        scene.add(ambientLight);
+        addPlayingPlane();
+        addPaaddles();
 
 
     const fps  = 60;
@@ -77,33 +76,31 @@
   function gameLoop() {
 
       requestAnimationFrame(gameLoop);
-     
+
       renderer.render(scene,camera);
 
-      controls.update();
+      //controls.update();
 
     // gestion de l'incrément du temps
     loop.now = timestamp();
     loop.dt = loop.dt + Math.min(1, (loop.now - loop.last) / 1000);
     while(loop.dt > loop.slowStep) {
       loop.dt = loop.dt - loop.slowStep;
-      update(loop.step); // déplace les objets d'une fraction de seconde
+      ballPhysics(loop.step); // déplace les objets d'une fraction de seconde
+      camera.position.x = paddle1.position.x-100;
+      camera.position.z = paddle1.position.z + 100;
+      camera.rotation.z = -90*Math.PI/180;
+      camera.rotation.y = -60*Math.PI/180;
     }
     renderer.render(scene, camera);  // rendu de la scène
     loop.last = loop.now;
 
     //requestAnimationFrame(gameLoop); // relance la boucle du jeu
 
-    controls.update();
+    //controls.update();
     stats.update();
   }
 
-  function update(step) {
-    ball.position.x += params.speed;
-    if(ball.position.x > 20 || ball.position.x < -20){
-        params.speed = params.speed * -1
-    }
-  }
 
   function resize() {
     w = container.clientWidth;

@@ -3,7 +3,9 @@ var gui;
 
 var params = {
     axis_visible : false,
-    speed: 0.5
+    speedX: 0.5,
+    speedY:0.5,
+    ballRadius: 5
 };
 
 document.addEventListener('keydown', function (event){
@@ -14,7 +16,9 @@ document.addEventListener('keydown', function (event){
 function initGui(){
     var gui = new dat.GUI();
     gui.add(params, 'axis_visible').onChange(toggleAxis);
-    gui.add(params, 'speed').min(0).step(0.1).onChange(speed = params.speed.value);
+    gui.add(params, 'speedX').min(0).step(0.1).onChange(upX);
+    gui.add(params, 'speedY').min(0).step(0.1).onChange(upY);
+    gui.add(params, 'ballRadius').min(0).step(0.1).onChange(updateRadius)
 }
 
 function input(evt){
@@ -37,4 +41,29 @@ function toggleAxis(){
             scene.remove(axis[i]);
         }
     }
+}
+
+
+function updateRadius(){
+    let x = ball.position.x;
+    let y = ball.position.y;
+    let z = ball.position.z;
+    let mat = ball.material;
+
+    scene.remove(ball);
+    let geometry = new THREE.SphereGeometry(params.ballRadius, 20,20);
+    ball = new THREE.Mesh(geometry, mat);
+    ball.position.x = x;
+    ball.position.y = y;
+    ball.position.z = z;
+    scene.add(ball);
+}
+
+
+function upX(){
+    speedX = params.speedX;
+}
+
+function upY(){
+    speedY = params.speedY;
 }
