@@ -63,4 +63,9 @@ function addPaaddles(){
     // lift paddles over playing surface
     paddle1.position.z = paddleDepth;
     paddle2.position.z = paddleDepth;
+    paddle1.geometry.name = "paddle";
+    paddle2.geometry.name = "paddle";
+
+    collisions.push(paddle1);
+    collisions.push(paddle2);
 }

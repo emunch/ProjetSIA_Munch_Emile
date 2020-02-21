@@ -1,4 +1,4 @@
-var container, w, h, scene, camera, controls, renderer, stats, ambientLight;
+var container, w, h, scene, camera, controls, renderer, stats, ambientLight, origin;
 var loop = {};
 var ball;
 var speedX = 1;
@@ -8,6 +8,8 @@ var axis =
 [new THREE.Mesh(new THREE.CubeGeometry(10,0.2,0.2),new THREE.MeshBasicMaterial({color: "#5BAD46"})),
 new THREE.Mesh(new THREE.CubeGeometry(0.2,10,0.2), new THREE.MeshBasicMaterial({color:"#EE3A2F" })),
 new THREE.Mesh(new THREE.CubeGeometry(0.2,0.2,10),new THREE.MeshBasicMaterial({color:"#FFE560"}))]; //z
+
+var collisions = []
 
 //variables du terrain
 var fieldWidth = 300;
@@ -29,3 +31,5 @@ var Key = {
     ra:39
 
 };
+
+var colided = false;
