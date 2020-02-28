@@ -4,7 +4,7 @@ function input(e){
     switch(e.keyCode){
         case Key.la:
         //touche gauche pressée
-        if(paddle1.position.y+paddleHeight/2 < fieldHeight*0.45 ){
+        if(paddle1.position.y+paddleHeight/2 < fieldHeight/2){
             paddle1.position.y += paddle1DirY * paddle1Speed;
         }
 
@@ -13,13 +13,13 @@ function input(e){
 
         case Key.ra:
 
-        if(paddle1.position.y-paddleHeight/2 > -fieldHeight*0.45 ){
+        if(paddle1.position.y-paddleHeight/2 > -fieldHeight/2){
             paddle1.position.y -= paddle1DirY*paddle1Speed;
         }
         break;
 
         default:
-            console.log("je sais pas frere");
+            console.log("je sais pas frere "   + e.code);
         break;
     }
 }

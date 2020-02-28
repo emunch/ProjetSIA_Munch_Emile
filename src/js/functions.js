@@ -7,16 +7,19 @@ function addPlayingPlane(){
     });
 
 // create the playing surface plane
-    var plane = new THREE.Mesh(
+     plane = new THREE.Mesh(
         new THREE.PlaneGeometry(
-        fieldWidth,	// 95% of table width, since we want to show where the ball goes out-of-bounds
-        fieldHeight,
-        32),
+        fieldWidth,
+        fieldHeight),
         planeMaterial);
+
+    plane.geometry.parameters.width = fieldWidth;
+    plane.geometry.parameters.height = fieldHeight;
     scene.add(plane);
+    console.log(plane);
 }
 
-function addPaaddles(){
+function addPaddles(){
         // set up the paddle vars
         var paddle1Material = new THREE.MeshLambertMaterial(
         {
@@ -33,7 +36,6 @@ function addPaaddles(){
     	paddleQuality),
       paddle1Material);
 
-      console.log(paddle1);
     // add the paddle to the scene
     scene.add(paddle1);
 
@@ -63,9 +65,33 @@ function addPaaddles(){
     // lift paddles over playing surface
     paddle1.position.z = paddleDepth;
     paddle2.position.z = paddleDepth;
-    paddle1.geometry.name = "paddle";
-    paddle2.geometry.name = "paddle";
+    paddle1.name = "paddle";
+    paddle2.name = "paddle";
 
     collisions.push(paddle1);
     collisions.push(paddle2);
+}
+
+
+function addWalls(){
+    console.log ("largeur :", fieldWidth, "hauteur: ", fieldHeight)
+    walls.push(new THREE.Mesh(new THREE.CubeGeometry(plane.geometry.parameters.width, .1, 20), new THREE.MeshLambertMaterial({color: 0x000000})));
+    walls[0].position.y = fieldHeight/2+ walls[0].geometry.parameters.height/2;
+    walls[0].position.z = walls[0].geometry.parameters.depth/2
+
+
+    walls.push(new THREE.Mesh(new THREE.CubeGeometry(plane.geometry.parameters.width, .1, 20), new THREE.MeshLambertMaterial({color: 0x000000})));
+    walls[1].position.y = -fieldHeight/2+ walls[1].geometry.parameters.height/2;
+    walls[1].position.z = walls[1].geometry.parameters.depth/2
+
+    walls.push(new THREE.Mesh(new THREE.CubeGeometry( .1 , plane.geometry.parameters.height, 20), new THREE.MeshLambertMaterial({color: 0x000000})));
+    walls[2].position.x = -fieldWidth/2+ walls[2].geometry.parameters.width/2
+    walls[2].position.z = walls[2].geometry.parameters.depth/2
+
+    walls.push(new THREE.Mesh(new THREE.CubeGeometry( .1 , plane.geometry.parameters.height, 20), new THREE.MeshLambertMaterial({color: 0x000000})));
+    walls[3].position.x = fieldWidth/2+ walls[3].geometry.parameters.width/2
+    walls[3].position.z = walls[3].geometry.parameters.depth/2
+
+    walls.forEach(e => scene.add(e));
+    walls.forEach(e => collisions.push(e));
 }

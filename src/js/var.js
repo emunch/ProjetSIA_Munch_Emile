@@ -12,8 +12,8 @@ new THREE.Mesh(new THREE.CubeGeometry(0.2,0.2,10),new THREE.MeshBasicMaterial({c
 var collisions = []
 
 //variables du terrain
-var fieldWidth = 300;
-var fieldHeight = 250;
+var fieldWidth = 200;
+var fieldHeight = 100;
 
 //paddle variables
 var paddle1, paddle2;
@@ -23,13 +23,22 @@ var paddleDepth = 10;
 var paddleQuality = 1;
 var paddle1DirY, paddle1Speed= 5, paddle1DirY = 1;
 
-//valeurs ascii des touches
+
+var walls = [];
+var plane;
+
 var Key = {
-    _pressed: {},
-
-    la:37,
-    ra:39
-
+    la :37,
+    ra: 39
 };
-
 var colided = false;
+
+var ah
+
+var intersection;
+
+var ray3;
+
+var level = 1;
+
+var player, bot;

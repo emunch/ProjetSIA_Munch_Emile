@@ -19,9 +19,7 @@
 
     camera = new THREE.PerspectiveCamera(75, w/h, 0.001, 100000);
     camera.position.set(0, 0, 320);
-    //camera.lookAt(0,0,0);
-    //controls.target = new THREE.Vector3(0, 0, 0.75);
-    //controls.panSpeed = 0.4;
+
 
     const renderConfig = {antialias: true, alpha: true};
     renderer = new THREE.WebGLRenderer(renderConfig);
@@ -59,7 +57,12 @@
         ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.3)
         scene.add(ambientLight);
         addPlayingPlane();
-        addPaaddles();
+        addPaddles();
+        addWalls();
+
+        bot = new Player();
+        player = new Player();
+
 
 
     const fps  = 60;
