@@ -60,9 +60,6 @@
         addPaddles();
         addWalls();
 
-        bot = new Player();
-        player = new Player();
-
 
 
     const fps  = 60;
@@ -91,7 +88,10 @@
     loop.dt = loop.dt + Math.min(1, (loop.now - loop.last) / 1000);
     while(loop.dt > loop.slowStep) {
       loop.dt = loop.dt - loop.slowStep;
-      ballPhysics(loop.step); // déplace les objets d'une fraction de seconde
+      if(isPlaying){
+        ballPhysics(loop.step); // déplace les objets d'une fraction de seconde
+      }
+
       camera.position.x = paddle1.position.x-100;
       camera.position.z = paddle1.position.z + 100;
       camera.rotation.z = -90*Math.PI/180;

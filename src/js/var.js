@@ -1,3 +1,7 @@
+var maxLevel = 10;
+var playerH, botH = 3;
+
+
 var container, w, h, scene, camera, controls, renderer, stats, ambientLight, origin;
 var loop = {};
 var ball;
@@ -29,7 +33,12 @@ var plane;
 
 var Key = {
     la :37,
-    ra: 39
+    ra: 39,
+    j: 74,
+    i:73,
+    space:32, 
+    k:75, 
+    f:70
 };
 var colided = false;
 
@@ -42,3 +51,7 @@ var ray3;
 var level = 1;
 
 var player, bot;
+
+var invincible = false;
+var isPlaying = false;
+var fc = false;

@@ -14,24 +14,38 @@ function ballPhysics(step){
         speedX = - speedX;
         ball.position.x = 0;
         ball.position.y = 0;
-        console.log("player marque");
-        player.setHP(player.hp - 1/(level+1));
-        if(player.hp == 0){
-            level ++;
-            player.setHP(1);
+        if(!invincible){
+    
+            isPlaying  = false;
+            playerH --;
+            if(playerH == 0){
+                ball.position.x = 0;
+                ball.position.y = 0;
+                isPlaying = false;
+                if(level < maxLevel){
+                    level ++;
+                }
+                playerH = 3;
+            }
         }
-
     }
 
     if(ball.position.x + ball.geometry.boundingSphere.radius >= fieldWidth/2){
         ball.position.x = 0;
         ball.position.y = 0;
         speedX = -speedX;
-        bot.setHP(player.hp - 1/(level+1));
-        if(bot.hp == 0){
-            level ++;
-            bot.setHP(1);
-        }
+            isPlaying = false;
+            botH --;
+            console.log("hp du bot: " + botH);
+            if(botH == 0){
+                ball.position.x = 0;
+                ball.position.y = 0;
+                if(level < maxLevel){
+                    level ++;
+                }
+                botH = 3;
+            }
+      
     }
 
     if(ball.position.y - ball.geometry.boundingSphere.radius <= -fieldHeight/2){
@@ -64,8 +78,9 @@ function ballPhysics(step){
 
         }
     }
-    ball.position.x += speedX * speed;
-    ball.position.y += speedY * speed;
+        ball.position.x += speedX * speed;
+        ball.position.y += speedY * speed;    
+
 
 }
 
