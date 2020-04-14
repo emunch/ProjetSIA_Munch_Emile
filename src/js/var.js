@@ -1,13 +1,13 @@
 var maxLevel = 10;
-var playerH, botH = 3;
+var playerH = 3, botH = 3;
 
 
 var container, w, h, scene, camera, controls, renderer, stats, ambientLight, origin;
 var loop = {};
 var ball;
-var speedX = 1;
-var speedY =1;
-var speed = 2;
+var speedX = 0.5;
+var speedY =0.5;
+var speed = 4;
 var axis =
 [new THREE.Mesh(new THREE.CubeGeometry(10,0.2,0.2),new THREE.MeshBasicMaterial({color: "#5BAD46"})),
 new THREE.Mesh(new THREE.CubeGeometry(0.2,10,0.2), new THREE.MeshBasicMaterial({color:"#EE3A2F" })),
@@ -25,7 +25,7 @@ var paddleWidth = 10;
 var paddleHeight = 50;
 var paddleDepth = 10;
 var paddleQuality = 1;
-var paddle1DirY, paddle1Speed= 5, paddle1DirY = 1;
+var paddle1DirY, paddle1Speed= 10, paddle1DirY = 1;
 
 
 var walls = [];
@@ -55,3 +55,5 @@ var player, bot;
 var invincible = false;
 var isPlaying = false;
 var fc = false;
+
+var playerUI, botUI;

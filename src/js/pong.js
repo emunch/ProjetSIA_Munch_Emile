@@ -8,6 +8,8 @@
     console.log("Go!");
     init();
     gameLoop();
+    playerUI = document.getElementById("scoreP1");
+    botUI = document.getElementById("scoreP2");
   }
 
   function init() {
@@ -18,7 +20,7 @@
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(75, w/h, 0.001, 100000);
-    camera.position.set(0, 0, 320);
+    camera.position.set(0, 0, 250);
 
 
     const renderConfig = {antialias: true, alpha: true};
@@ -92,10 +94,10 @@
         ballPhysics(loop.step); // déplace les objets d'une fraction de seconde
       }
 
-      camera.position.x = paddle1.position.x-100;
-      camera.position.z = paddle1.position.z + 100;
+      camera.position.x = paddle1.position.x-50;
+      camera.position.z = paddle1.position.z + 50;
       camera.rotation.z = -90*Math.PI/180;
-      camera.rotation.y = -60*Math.PI/180;
+      camera.rotation.y = -45*Math.PI/180;
     }
     renderer.render(scene, camera);  // rendu de la scène
     loop.last = loop.now;

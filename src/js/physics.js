@@ -15,17 +15,12 @@ function ballPhysics(step){
         ball.position.x = 0;
         ball.position.y = 0;
         if(!invincible){
-    
+            playerH--;
             isPlaying  = false;
-            playerH --;
-            if(playerH == 0){
-                ball.position.x = 0;
-                ball.position.y = 0;
-                isPlaying = false;
-                if(level < maxLevel){
+            console.log(playerH);
+            playerUI.childNodes[playerH*2+1].style.background = "red";
+            if(playerH == 0 && level<maxLevel){
                     level ++;
-                }
-                playerH = 3;
             }
         }
     }
@@ -36,14 +31,10 @@ function ballPhysics(step){
         speedX = -speedX;
             isPlaying = false;
             botH --;
-            console.log("hp du bot: " + botH);
-            if(botH == 0){
-                ball.position.x = 0;
-                ball.position.y = 0;
-                if(level < maxLevel){
+            console.log(botUI.childNodes)
+            botUI.childNodes[botH*2+1].style.background = "red";
+            if(botH == 0 && level<maxLevel){
                     level ++;
-                }
-                botH = 3;
             }
       
     }

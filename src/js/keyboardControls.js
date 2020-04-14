@@ -31,6 +31,16 @@ function input(e){
         break;
         case Key.space:
             isPlaying = !isPlaying
+            if(playerH == 0 || botH ==0){
+                playerH=3;
+                botH=3;
+                playerUI.childNodes[1].style.background = "cadetblue";
+                playerUI.childNodes[3].style.background = "cadetblue";
+                playerUI.childNodes[5].style.background = "cadetblue";
+                botUI.childNodes[1].style.background = "cadetblue";
+                botUI.childNodes[3].style.background = "cadetblue";
+                botUI.childNodes[5].style.background = "cadetblue";
+            }
         break;
         case Key.k:
             if(level < maxLevel){

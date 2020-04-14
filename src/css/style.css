@@ -12,3 +12,38 @@ html,
     width: 100%;
     height: 100%;
   }
+
+  div .score{
+    width: 525px;
+    height:200px;
+    display:flex;
+    border: 2px solid black;
+    border-radius:25px;
+  }
+
+  div #scoreP1 {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+  }
+
+  div .scoreToken{
+    background-color: cadetblue;
+    width:100px;
+    height:100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 2px solid black;
+    border-radius:25px;
+  }
+
+  img{
+    width:150px;
+    height:150px;
+    margin-top:25px;
+    margin-bottom: 25px;
+    margin-left: 0px;
+    margin-right:0px;;
+  }
