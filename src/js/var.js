@@ -1,6 +1,6 @@
 var maxLevel = 10;
 var playerH = 3, botH = 3;
-
+var keyboard;
 
 var container, w, h, scene, camera, controls, renderer, stats, ambientLight, origin;
 var loop = {};
@@ -25,20 +25,21 @@ var paddleWidth = 10;
 var paddleHeight = 50;
 var paddleDepth = 10;
 var paddleQuality = 1;
-var paddle1DirY, paddle1Speed= 10, paddle1DirY = 1;
+var  paddle1Speed= 2, paddle1DirY = 1;
+var  paddle2Speed= 2, paddle2DirY = 1;
 
 
 var walls = [];
 var plane;
 
 var Key = {
-    la :37,
-    ra: 39,
     j: 74,
     i:73,
     space:32, 
     k:75, 
-    f:70
+    f:70,
+    d1: 49,
+    d2: 50
 };
 var colided = false;
 
@@ -57,3 +58,17 @@ var isPlaying = false;
 var fc = false;
 
 var playerUI, botUI;
+var currBonus = -1;
+var timer;
+var bonuses  = {
+    ENEMY_LARGE:0,
+    SELF_LARGE:1,
+    ENEMY_HEAL:2,
+    SELF_HEAL:3,
+    DA_WALL:4,
+    SELF_STOP:5,
+    ENEMY_STOP:6,
+    ZA_WARUDO:7
+};
+var cameras1, cameras2, camera;
+var cameras = []

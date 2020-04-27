@@ -13,16 +13,23 @@
   }
 
   function init() {
+    keyboard = new THREEx.KeyboardState();
     container = document.querySelector('#SIApp');
     w = container.clientWidth;
     h = container.clientHeight;
 
     scene = new THREE.Scene();
 
-    camera = new THREE.PerspectiveCamera(75, w/h, 0.001, 100000);
-    camera.position.set(0, 0, 250);
+    camera1 = new THREE.PerspectiveCamera(75, w/h, 0.001, 100000);
 
 
+    camera2 = new THREE.PerspectiveCamera(75, w/h, 0.001, 100000);
+    camera2.position.set(0, 0, 250)
+    camera2.lookAt(0,0,0);
+
+    cameras.push(camera1);
+    cameras.push(camera2);
+    camera = cameras[0];
     const renderConfig = {antialias: true, alpha: true};
     renderer = new THREE.WebGLRenderer(renderConfig);
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -73,8 +80,15 @@
     loop.step     = 1/loop.fps;
     loop.slow     = slow;
     loop.slowStep = loop.slow * loop.step;
-
     initGui();
+
+    timer = setInterval(bonus, 5000);
+
+    camera.position.x = paddle1.position.x-50;
+    camera.position.z = paddle1.position.z + 50;
+    camera.rotation.z = -90*Math.PI/180;
+    camera.rotation.y = -45*Math.PI/180;
+  
   }
 
   function gameLoop() {
@@ -92,12 +106,10 @@
       loop.dt = loop.dt - loop.slowStep;
       if(isPlaying){
         ballPhysics(loop.step); // déplace les objets d'une fraction de seconde
+        movePaddles();
       }
-
-      camera.position.x = paddle1.position.x-50;
-      camera.position.z = paddle1.position.z + 50;
-      camera.rotation.z = -90*Math.PI/180;
-      camera.rotation.y = -45*Math.PI/180;
+  
+     
     }
     renderer.render(scene, camera);  // rendu de la scène
     loop.last = loop.now;

@@ -16,6 +16,8 @@ function ballPhysics(step){
         ball.position.y = 0;
         if(!invincible){
             playerH--;
+            reset_bonuses();
+            currBonus = -1;
             isPlaying  = false;
             console.log(playerH);
             playerUI.childNodes[playerH*2+1].style.background = "red";
@@ -31,6 +33,8 @@ function ballPhysics(step){
         speedX = -speedX;
             isPlaying = false;
             botH --;
+            reset_bonuses();
+            currBonus = -1;
             console.log(botUI.childNodes)
             botUI.childNodes[botH*2+1].style.background = "red";
             if(botH == 0 && level<maxLevel){

@@ -1,22 +1,7 @@
 
 function input(e){
-    console.log(e.keyCode);
+
     switch(e.keyCode){
-        case Key.la:
-        //touche gauche pressée
-        if(paddle1.position.y+paddleHeight/2 < fieldHeight/2){
-            paddle1.position.y += paddle1DirY * paddle1Speed;
-        }
-
-
-        break;
-
-        case Key.ra:
-
-        if(paddle1.position.y-paddleHeight/2 > -fieldHeight/2){
-            paddle1.position.y -= paddle1DirY*paddle1Speed;
-        }
-        break;
         case Key.j:
             //TODO
             console.log("je lance un joker");
@@ -45,7 +30,6 @@ function input(e){
         case Key.k:
             if(level < maxLevel){
                 level++
-                console.log("trivcheur va!");
             }
         break;
         case Key.f:
@@ -58,9 +42,16 @@ function input(e){
                 if (document.mozCancelFullScreen) { 
                     document.mozCancelFullScreen();
                 }
-            } 
+            }
+        break;
+        case Key.d1:
+            camera = cameras[0];
+        break;
+        case Key.d2:
+            camere = cameras[1];
+        break; 
         default:
-            console.log("je sais pas frere "   + e.code);
+
         break;
     }
 }
