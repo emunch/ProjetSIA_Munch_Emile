@@ -3,7 +3,9 @@ function input(e){
 
     switch(e.keyCode){
         case Key.j:
-            //TODO
+            currBonus = (currBonus+1)%9;
+            reset_bonuses();
+            apply_bonus(currBonus);
             console.log("je lance un joker");
         break;
         case Key.i:
@@ -24,7 +26,7 @@ function input(e){
                 playerUI.childNodes[5].style.background = "cadetblue";
                 botUI.childNodes[1].style.background = "cadetblue";
                 botUI.childNodes[3].style.background = "cadetblue";
-                botUI.childNodes[5].style.background = "cadetblue";
+                botUI.childNodes[5].style.background = "cadetblue"; 
             }
         break;
         case Key.k:

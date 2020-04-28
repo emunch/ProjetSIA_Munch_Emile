@@ -7,6 +7,7 @@ var loop = {};
 var ball;
 var speedX = 0.5;
 var speedY =0.5;
+var baseSpeed = 4;
 var speed = 4;
 var axis =
 [new THREE.Mesh(new THREE.CubeGeometry(10,0.2,0.2),new THREE.MeshBasicMaterial({color: "#5BAD46"})),
@@ -22,11 +23,11 @@ var fieldHeight = 100;
 //paddle variables
 var paddle1, paddle2;
 var paddleWidth = 10;
-var paddleHeight = 50;
+var paddleHeight = 30;
 var paddleDepth = 10;
 var paddleQuality = 1;
 var  paddle1Speed= 2, paddle1DirY = 1;
-var  paddle2Speed= 2, paddle2DirY = 1;
+var  paddle2Speed= 1, paddle2DirY = 1;
 
 
 var walls = [];
@@ -68,7 +69,10 @@ var bonuses  = {
     DA_WALL:4,
     SELF_STOP:5,
     ENEMY_STOP:6,
-    ZA_WARUDO:7
+    ZA_WARUDO:7,
+    INVERTED_CONTROLS:8
 };
 var cameras1, cameras2, camera;
 var cameras = []
+
+var skybox;

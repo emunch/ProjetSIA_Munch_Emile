@@ -20,23 +20,18 @@
 
     scene = new THREE.Scene();
 
-    camera1 = new THREE.PerspectiveCamera(75, w/h, 0.001, 100000);
-
-
-    camera2 = new THREE.PerspectiveCamera(75, w/h, 0.001, 100000);
-    camera2.position.set(0, 0, 250)
-    camera2.lookAt(0,0,0);
-
-    cameras.push(camera1);
-    cameras.push(camera2);
-    camera = cameras[0];
+    camera = new THREE.PerspectiveCamera(100, w/h, 1, 1200);
+    var helper = new THREE.CameraHelper( camera );
+    camera.rotation.x = 0;
+    camera.rotation.y = 0;
+    camera.rotation.z = 0;
     const renderConfig = {antialias: true, alpha: true};
     renderer = new THREE.WebGLRenderer(renderConfig);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(w, h);
     container.appendChild(renderer.domElement);
 
-    //controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
 
     // add Stats.js - https://github.com/mrdoob/stats.js
     stats = new Stats();
@@ -68,6 +63,7 @@
         addPlayingPlane();
         addPaddles();
         addWalls();
+        init_skybox();
 
 
 
@@ -107,6 +103,7 @@
       if(isPlaying){
         ballPhysics(loop.step); // déplace les objets d'une fraction de seconde
         movePaddles();
+        botIA();
       }
   
      

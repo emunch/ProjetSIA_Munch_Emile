@@ -27,6 +27,11 @@ html,
     right: 0px;
   }
 
+  
+  div #scoreP2 {
+    position: absolute;
+  }
+
   div .scoreToken{
     background-color: cadetblue;
     width:100px;

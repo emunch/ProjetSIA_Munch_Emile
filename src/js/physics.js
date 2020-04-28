@@ -22,7 +22,9 @@ function ballPhysics(step){
             console.log(playerH);
             playerUI.childNodes[playerH*2+1].style.background = "red";
             if(playerH == 0 && level<maxLevel){
-                    level ++;
+                    //afficher que t'as perdu
+                    speed = baseSpeed;
+                    reset_bonuses();
             }
         }
     }
@@ -36,9 +38,16 @@ function ballPhysics(step){
             reset_bonuses();
             currBonus = -1;
             console.log(botUI.childNodes)
-            botUI.childNodes[botH*2+1].style.background = "red";
+           botUI.childNodes[botH*2+1].style.background = "red";
             if(botH == 0 && level<maxLevel){
+                //afficher que t'as gagné, level +1 et on augmente la vitesse de la balle et du bot
                     level ++;
+                baseSpeed += 0.3;
+                speed = baseSpeed;
+                paddle2Speed += 0.05;
+                reset_bonuses();
+                scene.remove(skybox);
+                display_SB();
             }
       
     }
@@ -56,9 +65,8 @@ function ballPhysics(step){
 
 
     let ray = new THREE.Raycaster(ball.position, new THREE.Vector3(speedX,speedY, 0));
-    /*let ray2 = new THREE.Raycaster(ball.position, new THREE.Vector3(speedX,speedY, 0);
-    let ray3= new THREE.Raycaster(ball.position, new THREE.Vector3(speedX,speedY, 0);*/
-
+    let ray2 = new THREE.Raycaster(ball.position, new THREE.Vector3(speedX,speedY, 0).applyAxisAngle(new THREE.Vector3(0,0,1),THREE.Math.degToRad( 45 )));
+    let ray3= new THREE.Raycaster(ball.position, new THREE.Vector3(speedX,speedY, 0).applyAxisAngle(new THREE.Vector3(0,0,1), THREE.Math.degToRad( -45 )));
 
 
     intersection = ray.intersectObjects(collisions);
@@ -70,6 +78,7 @@ function ballPhysics(step){
              newV = new THREE.Vector3(speedX,speedY, 0).reflect(hit.face.normal);
             speedX = newV.x;
             speedY = newV.y;
+            speed +=0.01;
 
         }
     }
