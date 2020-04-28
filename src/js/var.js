@@ -1,7 +1,7 @@
 var maxLevel = 10;
 var playerH = 3, botH = 3;
 var keyboard;
-
+var play = true;
 var container, w, h, scene, camera, controls, renderer, stats, ambientLight, origin;
 var loop = {};
 var ball;
@@ -27,8 +27,8 @@ var paddleHeight = 30;
 var paddleDepth = 10;
 var paddleQuality = 1;
 var  paddle1Speed= 2, paddle1DirY = 1;
-var  paddle2Speed= 1, paddle2DirY = 1;
-
+var  paddle2Speed= 0.7, paddle2DirY = 1;
+var  globalPaddle2Speed = 0.7;
 
 var walls = [];
 var plane;
@@ -36,11 +36,13 @@ var plane;
 var Key = {
     j: 74,
     i:73,
+    h: 72,
     space:32, 
     k:75, 
     f:70,
     d1: 49,
-    d2: 50
+    d2: 50,
+    p:80
 };
 var colided = false;
 
@@ -70,9 +72,9 @@ var bonuses  = {
     SELF_STOP:5,
     ENEMY_STOP:6,
     ZA_WARUDO:7,
-    INVERTED_CONTROLS:8
 };
 var cameras1, cameras2, camera;
 var cameras = []
 
 var skybox;
+var confineWall;

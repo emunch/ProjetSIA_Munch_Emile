@@ -1,4 +1,4 @@
-
+var visible = false;
 function input(e){
 
     switch(e.keyCode){
@@ -31,7 +31,15 @@ function input(e){
         break;
         case Key.k:
             if(level < maxLevel){
-                level++
+                level++;
+                document.getElementById("level").textContent ="level: "+level;
+                baseSpeed += 0.3;
+                speed = baseSpeed;
+                globalPaddle2Speed += 0.05;
+                paddle2Speed = globalPaddle2Speed;
+                reset_bonuses();
+                scene.remove(skybox);
+                display_SB();
             }
         break;
         case Key.f:
@@ -52,8 +60,23 @@ function input(e){
         case Key.d2:
             camere = cameras[1];
         break; 
+        case Key.p:
+            toggle_music();
+        break;
+        case Key.h:
+            let elt = document.getElementById("help");
+            console.log(elt);
+            if(!visible){
+                elt.style.visibility = "visible";
+                visible = true;
+            }else{
+                elt.style.visibility = "hidden";
+                visible = false;
+            }
+            
+        break;
         default:
-
+            console.log("valeur inconnue, code ascii :", e.keyCode);
         break;
     }
 }

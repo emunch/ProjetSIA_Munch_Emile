@@ -31,7 +31,7 @@
     renderer.setSize(w, h);
     container.appendChild(renderer.domElement);
 
-    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    //controls = new THREE.OrbitControls(camera, renderer.domElement);
 
     // add Stats.js - https://github.com/mrdoob/stats.js
     stats = new Stats();
@@ -64,6 +64,7 @@
         addPaddles();
         addWalls();
         init_skybox();
+        play_music();
 
 
 

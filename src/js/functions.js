@@ -92,5 +92,7 @@ function addWalls(){
 
     walls.forEach(e => scene.add(e));
     walls.forEach(e => collisions.push(e));
+
+    confineWall = new THREE.Mesh(new THREE.CubeGeometry(.1, plane.geometry.parameters.height, 20), new THREE.MeshLambertMaterial({color: 0x00008B}))
 }
 

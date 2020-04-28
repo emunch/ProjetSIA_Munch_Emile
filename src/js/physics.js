@@ -25,6 +25,8 @@ function ballPhysics(step){
                     //afficher que t'as perdu
                     speed = baseSpeed;
                     reset_bonuses();
+                    document.getElementById("info").textContent="You most :( press space to try again";
+                    paddle1.position.x = -fieldWidth/2 + paddleWidth + 20;
             }
         }
     }
@@ -37,17 +39,23 @@ function ballPhysics(step){
             botH --;
             reset_bonuses();
             currBonus = -1;
-            console.log(botUI.childNodes)
+            console.log("wallah il prend cher le méchant");
            botUI.childNodes[botH*2+1].style.background = "red";
             if(botH == 0 && level<maxLevel){
                 //afficher que t'as gagné, level +1 et on augmente la vitesse de la balle et du bot
-                    level ++;
+                level ++;
                 baseSpeed += 0.3;
                 speed = baseSpeed;
-                paddle2Speed += 0.05;
+                globalPaddle2Speed += 0.05;
+                paddle2Speed= globalPaddle2Speed;
                 reset_bonuses();
                 scene.remove(skybox);
                 display_SB();
+                document.getElementById("level").textContent ="level: "+level;
+                document.getElementById("info").textContent="You won! press space to start next level!";
+                paddle1.position.x = -fieldWidth/2 + paddleWidth + 20;
+                
+                
             }
       
     }
@@ -79,6 +87,7 @@ function ballPhysics(step){
             speedX = newV.x;
             speedY = newV.y;
             speed +=0.01;
+            bounce();
 
         }
     }

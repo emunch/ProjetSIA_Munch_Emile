@@ -4,7 +4,7 @@ function bonus(){
     
       reset_bonuses();
     //application des bonus
-    let bonus = Math.trunc(Math.random()*9);
+    let bonus = Math.trunc(Math.random()*8);
     apply_bonus(bonus);
     
    }
@@ -13,7 +13,7 @@ function bonus(){
   
   
   function reset_speed(){
-    paddle2Speed=2;
+    paddle2Speed=globalPaddle2Speed;
     paddle1Speed= 2;
   }
   
@@ -32,11 +32,12 @@ function bonus(){
         scene.add(paddle2);
       break;
       case bonuses.DA_WALL:
-        //TODO
+        deconfine();
       break;
-      case bonuses.INVERTED_CONTROLS:
-          speed = -speed;
-      break;
+      case bonuses.ZA_WARUDO:
+          if(!play){
+              toggle_music();
+          }
     }
   }
 
@@ -45,9 +46,19 @@ function bonus(){
         case bonuses.DA_WALL:
           console.log("DA WALLU");
           currBonus = bonuses.DA_WALL;
+          confine();
+          document.getElementById("info").textContent="You are now under lockdown for 5s";
+          if(play){
+            yareyaredaze.play();
+          }
+          
         break;
         case bonuses.ENEMY_HEAL:
+            if(play){
+                ohno.play();
+            }
           currBonus = bonuses.ENEMY_HEAL;
+          document.getElementById("info").textContent="Oh no! ennemy healed 1HP :("
           console.log("da bad healu");
           if(botH<3 && botH >0){
             botH++;
@@ -66,7 +77,11 @@ function bonus(){
           }
         break;
         case bonuses.SELF_HEAL:
+            if(play){
+                yareyaredaze.play();
+              }
           currBonus = bonuses.SELF_HEAL;
+          document.getElementById("info").textContent="Congratulations: you healed 1HP :)";
           console.log("da good healu");
           if(playerH< 3 && playerH>0){
             playerH++;
@@ -85,40 +100,66 @@ function bonus(){
           }
         break;
         case bonuses.SELF_LARGE:
+            if(play){
+                yareyaredaze.play();
+              }
+          document.getElementById("info").textContent="Your paddle is now larger for 5s";
           currBonus = bonuses.SELF_LARGE;
           scene.remove(paddle1);
           paddle1.scale.y = 1.2;
           scene.add(paddle1);
         break;
         case bonuses.ENEMY_LARGE:
+            if(play){
+                ohno.play();
+            }
+         document.getElementById("info").textContent="ennemy paddle is now  larger for 5s";
           currBonus = bonuses.ENEMY_LARGE;
           scene.remove(paddle2);
           paddle2.scale.y = 1.2;
           scene.add(paddle2);
         break;
         case bonuses.ENEMY_STOP:
+            if(play){
+                yareyaredaze.play();
+              }
+          document.getElementById("info").textContent="ennemy stopped moving !";
           currBonus = bonuses.ENEMY_STOP;
           paddle2Speed= 0;
           let T1 = setTimeout(reset_speed, 1000);
         break;
         case bonuses.SELF_STOP:
+            if(play){
+                ohno.play();
+            }
+            document.getElementById("info").textContent="oh no ! you stopped moving";
           currBonus = bonuses.SELF_STOP;
           paddle1speed=0;
           let T2= setTimeout(reset_speed, 1000);
         break;
         case bonuses.ZA_WARUDO:
+          if(play){
+              toggle_music();
+              za_warudo.play();
+          }
           currBonus = bonuses.ZA_WARUDO;
           paddle12peed=0;
           paddle2Speed=0;
           let T3 = setTimeout(reset_speed, 1000);
-        break;
-        case bonuses.INVERTED_CONTROLS:
-          currBonus = bonuses.INVERTED_CONTROLS;
-          speed = -speed;
         break;
         default:
             ("je sais pas ce bonus :", currBonus);
         break;
     
       }
+ }
+
+ function confine(){
+    scene.add(confineWall);
+    collisions.push(confineWall);
+ }
+
+ function deconfine(){
+     collisions.pop();
+     scene.remove(confineWall)
  }
