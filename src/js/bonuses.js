@@ -49,16 +49,10 @@ function bonus(){
               console.log("DA WALLU");
               currBonus = bonuses.DA_WALL;
               confine();
-              document.getElementById("info").textContent="You are now under lockdown for 5s";
-              if(play){
-                yareyaredaze.play();
-              }
+              document.getElementById("info").textContent="You are now under lockdown ";
               
             break;
             case bonuses.ENEMY_HEAL:
-                if(play){
-                    ohno.play();
-                }
               currBonus = bonuses.ENEMY_HEAL;
               document.getElementById("info").textContent="Oh no! ennemy healed 1HP :("
               console.log("da bad healu");
@@ -79,12 +73,8 @@ function bonus(){
               }
             break;
             case bonuses.SELF_HEAL:
-                if(play){
-                    yareyaredaze.play();
-                  }
               currBonus = bonuses.SELF_HEAL;
-              document.getElementById("info").textContent="Congratulations: you healed 1HP :)";
-              console.log("da good healu");
+              document.getElementById("info").textContent="Congratulations: you healed 1HP :)")
               if(playerH< 3 && playerH>0){
                 playerH++;
                 switch (playerH){
@@ -102,44 +92,33 @@ function bonus(){
               }
             break;
             case bonuses.SELF_LARGE:
-                if(play){
-                    yareyaredaze.play();
-                  }
-              document.getElementById("info").textContent="Your paddle is now larger for 5s";
+              document.getElementById("info").textContent="Your paddle is now larger ";
               currBonus = bonuses.SELF_LARGE;
               scene.remove(paddle1);
               paddle1.scale.y = 1.2;
               scene.add(paddle1);
             break;
             case bonuses.ENEMY_LARGE:
-                if(play){
-                    ohno.play();
-                }
-             document.getElementById("info").textContent="ennemy paddle is now  larger for 5s";
+             document.getElementById("info").textContent="ennemy paddle is now  larger ";
               currBonus = bonuses.ENEMY_LARGE;
               scene.remove(paddle2);
               paddle2.scale.y = 1.2;
               scene.add(paddle2);
             break;
             case bonuses.ENEMY_STOP:
-                if(play){
-                    yareyaredaze.play();
-                  }
               document.getElementById("info").textContent="ennemy stopped moving !";
               currBonus = bonuses.ENEMY_STOP;
               paddle2Speed= 0;
               let T1 = setTimeout(reset_speed, 1000);
             break;
             case bonuses.SELF_STOP:
-                if(play){
-                    ohno.play();
-                }
                 document.getElementById("info").textContent="oh no ! you stopped moving";
               currBonus = bonuses.SELF_STOP;
               paddle1speed=0;
               let T2= setTimeout(reset_speed, 1000);
             break;
             case bonuses.ZA_WARUDO:
+              let T3 = setTimeout(reset_bonuses, 3000);
               if(play){
                   toggle_music();
                   za_warudo.play();

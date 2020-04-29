@@ -15,6 +15,7 @@ function ballPhysics(step){
         ball.position.x = 0;
         ball.position.y = 0;
         if(!invincible){
+            ohno.play();
             playerH--;
             reset_bonuses();
             currBonus = -1;
@@ -27,6 +28,8 @@ function ballPhysics(step){
                     reset_bonuses();
                     document.getElementById("info").textContent="You most :( press space to try again";
                     paddle1.position.x = -fieldWidth/2 + paddleWidth + 20;
+                    clearInterval(timer);
+                    timer =  setInterval(bonus, 10000);
             }
         }
     }
@@ -37,6 +40,7 @@ function ballPhysics(step){
         speedX = -speedX;
             isPlaying = false;
             botH --;
+            yareyaredaze.play();
             reset_bonuses();
             currBonus = -1;
             console.log("wallah il prend cher le méchant");
@@ -54,8 +58,8 @@ function ballPhysics(step){
                 document.getElementById("level").textContent ="level: "+level;
                 document.getElementById("info").textContent="You won! press space to start next level!";
                 paddle1.position.x = -fieldWidth/2 + paddleWidth + 20;
-                
-                
+                clearInterval(timer);
+                timer =  setInterval(bonus, 10000);
             }
       
     }
@@ -100,6 +104,4 @@ function ballPhysics(step){
 
 
 
-function cpuLogic(){
 
-}

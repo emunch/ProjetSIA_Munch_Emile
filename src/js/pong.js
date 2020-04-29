@@ -21,7 +21,6 @@
     scene = new THREE.Scene();
 
     camera = new THREE.PerspectiveCamera(100, w/h, 1, 1200);
-    var helper = new THREE.CameraHelper( camera );
     camera.rotation.x = 0;
     camera.rotation.y = 0;
     camera.rotation.z = 0;
@@ -79,12 +78,13 @@
     loop.slowStep = loop.slow * loop.step;
     initGui();
 
-    timer = setInterval(bonus, 5000);
+    timer = setInterval(bonus, 10000);
 
     camera.position.x = paddle1.position.x-50;
     camera.position.z = paddle1.position.z + 50;
     camera.rotation.z = -90*Math.PI/180;
     camera.rotation.y = -45*Math.PI/180;
+    cMode = 1;
   
   }
 

@@ -78,3 +78,4 @@ var cameras = []
 
 var skybox;
 var confineWall;
+var cMode;

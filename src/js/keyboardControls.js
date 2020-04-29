@@ -40,6 +40,8 @@ function input(e){
                 reset_bonuses();
                 scene.remove(skybox);
                 display_SB();
+                clearInterval(timer);
+                timer =  setInterval(bonus, 5000);
             }
         break;
         case Key.f:
@@ -55,10 +57,24 @@ function input(e){
             }
         break;
         case Key.d1:
-            camera = cameras[0];
+            
+        if (cMode != 1){
+            camera = new THREE.PerspectiveCamera(100, w/h, 1, 1200);
+
+            camera.position.x = paddle1.position.x-50;
+            camera.position.z = paddle1.position.z + 50;
+            camera.rotation.z = -90*Math.PI/180;
+            camera.rotation.y = -45*Math.PI/180;
+            cMode  =1;
+        }
         break;
         case Key.d2:
-            camere = cameras[1];
+            if(cMode != 2){
+                camera = new THREE.PerspectiveCamera(100, w/h, 1, 1200);
+                camera.position.set(0,0, 100);
+                camera.lookAt(scene.position);
+                cMode = 2;
+            }
         break; 
         case Key.p:
             toggle_music();
