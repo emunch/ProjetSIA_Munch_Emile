@@ -87,7 +87,7 @@ function ballPhysics(step){
  
     if(intersection.length > 0){
         let hit = intersection[0];
-        if(hit.distance < ball.geometry.boundingSphere.radius  /*&& (ball.position.x > paddle1.position.x && ball.position.x < paddle2.position.x)*/) {
+        if(hit.distance < ball.geometry.boundingSphere.radius  && (ball.position.x > paddle1.position.x && ball.position.x < paddle2.position.x)) {
              newV = new THREE.Vector3(speedX,speedY, 0).reflect(hit.face.normal);
             speedX = newV.x;
             speedY = newV.y;
