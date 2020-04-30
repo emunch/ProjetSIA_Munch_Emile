@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>SIApp</title>
+		<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+
+        <link rel="stylesheet" type="text/css" href="./src/css/stylePage.css">
+</head>
+<body>
+	
+<header>
+    <h1>Rapport Projet pong</h1>
+</header>
+	<div>
+        <h1>Présentation du projet</h1>
+        <p>Le but de ce projet était, en utilisant une librairir 3D (ici THREE.js), de recréer le mythique jeu Pong,  en 3D et en y ajoutant une touche personnelle et une skybox. Au cours de  ce rapport, nous allons étudoier les différents points techniques de ce projets, mais aussi les soucis présents dasns celui-ci.</p>
+    </div>
+
+    <div class = "centered-content">
+        <h1>sommaire</h1>
+        <p>dans ce rapport, nous allons voir</p>
+        <ul>
+            <li>Le fonctionnement global du jeu (points etc etc)</li>
+            <li>Les différents niveaux</li>
+            <li>Les différents bonus et leurs effets</li>
+            <li>La gestion des colisions</li>
+            <li>un récapitulatif des touches utilisables en jeu</li>
+            
+        </ul>
+    </div>
+
+    <div>
+        <h1>Fonctionnement du jeu</h1>
+        <p>Le principe du jeu est un pong assez basique. Chaque personnage possède 3PV. Le but du jeu est d'infliger 3 points de degats à l'adversaire sans perdre. Des bonus / malus sont attribués au joueur tout au cours de la partie pour pimenter un peu les choses. Il y à 10 niveau en tout, et à chaque fois
+        la balle accélère un peu ainsi que la vitesse de la raquette de l'ennemi. Des  bruitages sont présents, notamment le rebond de la balle, quand on perd des PV ou qu'on en fait perdre a l'adversaire, et il y a  une musique d'embiance. Chaque changement de niveau se fait via un changement de sybox (il y en a 5 différentes en tout) de façon aléatoire.  le terrain, quant a lui, ne change cependant pas. Un petit affiahage en haut de l'écran permet de savoir le niveau ainsi que le bonus/malus courrant sur le terrain </p>
+    </div>
+
+    <div>
+        <h1>Les différents niveaux</h1>
+        <p>Comme dit précédemment, il y a en tout 10 niveaux (au-delà, le jeu bouclera a l'infini sur le niveau 10). à chaque changement de niveau, la balle ainsi que la raquette adverse accélèreront, et la skybox en fond changera.</p>
+    </div>
+
+    <div>
+        <h1>Les bonus et leurs effets</h1>
+        <p>Pour les bonus, ils n'apparaissent pas directement sur le terrain. Pour rendre  le jeu plus pimenté, ce sont en réalité des événements périodiques (toutes les 6s environ), qui avantagerons/désavantagerons le joueur. de par la nature de certains bonus/malus, ils ne sont pas cumulables, et seront remis à 0 à chaque nouvel événement. En voici la liste:</p>
+        <ul>
+            <li>Regain d'un HP pour le joueur</li>
+            <li>Regain d'un HP pour l'adversaire</li>
+            <li>immobilisation pendant 2 secondes de la raquette adverse</li>
+            <li>immobilisation pendant 2 secondes de la raquette du joueur</li>
+            <li>élargissement de la raquette adverse</li>
+            <li>élargissement de la raquette du joueur</li>
+            <li>Confinement: un étrange virus a envahi le terrain de jeu, et un confinement à été mis en place. un mur central apparaitra alors, confinant alors la balle dans la moitié du terrain ou elle se situe.</li>
+            <li>ZA WARUDO: les deux raquettes seron immobilisées, mais pas la balle. Cette immobilisation est cependant très courts (2secondes environ)</li>
+        </ul>
+    </div>
+    <div>
+        <h1>La gestion des collisions</h1>
+        <p>LEs  colisions sont gérées en tilisant un raycaster de la bibliothèque three.js . ce choix est du à la simplicité d'utilisation permettant d'éviter des tests tout le temps sur les coordonnées de la balle, mais aussi parce que il permet de faire rebondir la balle de manière très naturelle, via la fonction bounce() qui simule le rebond d'un vecteur par rapport à la normale d'une face. UN seul rayCast ne suffisant pas à bien calculer la sollision de la balle, il y en a en réalité 3: Un raycast colinéaire et confondu avec le vecteur de déplacement de la balle, et deux autres, basés également sur le vecteur vitesse de la balle, mai pivotés de 30° de part et d'autre du premier rayon. Cela permet de ratisser une plus large zone pour les colisions. Cependant un bug majeur subsiste, n'ayant pas trouvé de patch, la balle ne rebondira parfois pas à travers la raquette, la traversant simplement, alors que la collision a bien été détectée.</p>
+    </div>
+    <div class = "centered-content">
+        <h1>les différentes touches utilisables</h1>
+        <p>voici la liste des différentes touches utilisables en jeu et ce qu'elles font:</p>
+        <ul>
+            <li>flèche directionnelle  droite/gauche: déplacer la raquette sur le terrain</li>
+            <li>j: joker: enclanche directement l'événement suivant</li>
+            <li>i: god mode: le joueur devient invincible et ne prendra pas de degats en cas de passage de la balle derrière sa raquette</li>
+            <li>espace: permet de mettre le jeu en pause mais aussi de relancer la balle après chaque point</li>
+            <li>k: kill: permet de passer au niveau suivant directement</li>
+            <li>f: fullscreen: permet un passage en plein écran (ne fonctionne cependant que sur firefox)</li>
+            <li>1.2: permet de canger de caméra pour apprécier plusieurs angles de vue</li>
+            <li>p: play/pause: permet de stopper/relancer la musique et les bruitages sonores (sauf pour les rebonds de la balle)</li>
+            <li>h: help: permet d'afficher l'overlay d'aide, récapitulant toutes les touches vues jusqu'ici</li>
+        </ul>
+    </div>
+    <div>
+        <h1>compléments sur le projet</h1>
+        <ul>
+            <li>Ce projet a été réalisé par Emile Munch</li>
+            <li>Vous pouvez directement acéder au jue en cliquant <a href ="./pong3D.html">ici</a></li>
+            <li>un gitHub do projet est consultable en cliquant <a href = "https://github.com/emunch/ProjetSIA_Munch_Emile.git">ici</a></li>
+        </ul>
+        <p></p>
+    </div>
+	
+</body>
+</html>

@@ -23,7 +23,7 @@ var fieldHeight = 100;
 //paddle variables
 var paddle1, paddle2;
 var paddleWidth = 10;
-var paddleHeight = 30;
+var paddleHeight = 40;
 var paddleDepth = 10;
 var paddleQuality = 1;
 var  paddle1Speed= 2, paddle1DirY = 1;

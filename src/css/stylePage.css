@@ -1,0 +1,18 @@
+p{
+    line-break: normal;
+}
+header{
+    text-align:center;
+}
+
+div{
+    display:block;
+    margin: 0 auto;
+    width: 50%;
+    height:auto;
+}
+
+div>h1{
+    text-align:center;
+}
+

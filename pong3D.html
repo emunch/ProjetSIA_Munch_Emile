@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>SIApp</title>
+		<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+
+        <link rel="stylesheet" type="text/css" href="./src/css/style.css">
+
+        <!-- including libraries -->
+        <script src="./src/lib/three.js"></script>
+        <script src="./src/lib/dat.gui.min.js"></script>
+		<script src = "./src/lib/OrbitControls.js"></script>
+		<script type="text/javascript" src = "./src/js/devMode.js"></script>
+		<script type="text/javascript" src = "./src/js/functions.js"> </script>
+		<script type="text/javascript" src = "./src/js/physics.js"> </script>
+		<script type="text/javascript" src = "./src/js/var.js"> </script>
+		<script type="text/javascript" src = "./src/js/keyboardControls.js"> </script>
+		<script type="text/javascript" src = "./src/js/paddle.js"> </script>
+		<script type="text/javascript" src = "./src/js/player.js"> </script>
+		<script type="text/javascript" src = "./src/js/paddle.js"> </script>
+		<script type="text/javascript" src = "./src/js/bonuses.js"> </script>
+		<script type="text/javascript" src = "./src/js/skybox_loader.js"> </script>
+		<script type="text/javascript" src = "./src/js/sounds.js"> </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
+		<script src="http://threejs.org/examples/js/controls/TrackballControls.js"></script>
+		<script src="./src/lib/threex.keyboardstate.js"></script>
+
+        <!--including my js files-->
+        <script src="./src/js/pong.js"></script>
+</head>
+<body>
+	
+	<div id="SIApp">
+		<div id = "scoreP1" class = "score">
+			<div class="scoreToken"></div>
+			<div  class="scoreToken"></div>
+			<div class="scoreToken"></div>
+			<img src="./src/medias/images/characters/enemy.png" alt="enemy">
+		</div> 
+	
+	
+		<div id = "scoreP2" class ="score">
+			<div class="scoreToken"></div>
+			<div  class="scoreToken"></div>
+			<div class="scoreToken"></div>
+			<img src="./src/medias/images/characters/bot.png" alt="enemy">
+		</div> 
+
+		<div id="help" class="centered">
+			<h1>Aide de jeu</h1>
+			<ul>
+				<li>p: activer/désactiver la musique</li>
+				<li>j: fait apparaitre l'évenement suivant</li>
+				<li>i: active le mode invincible (god mod)</li>
+				<li>espace: mettre le jeu en pause ou le relancer</li>
+				<li>k: passage au niveau suivant</li>
+				<li>f: activer/desactiver le mode plein écran</li>
+                <li>h: afficher/cacher le menu d'aide</li>
+                <li>1..2: changer de caméra</li>
+			</ul>
+		</div>
+
+		<div id ="play">
+			<h1 id="level">level: 1 </h1> 
+			<p id="info">press space to start</p>
+		</div>
+		
+	</div> 
+
+	
+	
+</body>
+</html>

@@ -6,7 +6,8 @@ function input(e){
             currBonus = (currBonus+1)%9;
             reset_bonuses();
             apply_bonus(currBonus);
-            console.log("je lance un joker");
+            clearInterval(timer);
+            timer =  setInterval(bonus, 6000);
         break;
         case Key.i:
             invincible = !invincible;

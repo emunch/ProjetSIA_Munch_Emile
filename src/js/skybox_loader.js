@@ -1,7 +1,7 @@
-var sky1 = "../medias/images/skyBox/envmap_grimmnight/"
-var sky2 = "../medias/images/skyBox/envmap_interstellar/"
-var sky3 = "../medias/images/skyBox/envmap_stormydays/"
-var sky4 = "../medias/images/skyBox/envmap_violentdays/"
+var sky1 = "./src/medias/images/skyBox/envmap_grimmnight/"
+var sky2 = "./src/medias/images/skyBox/envmap_interstellar/"
+var sky3 = "./src/medias/images/skyBox/envmap_stormydays/"
+var sky4 = "./src/medias/images/skyBox/envmap_violentdays/"
 var format = ".png";
 var skyboxes = []
 //    px (positive x) : right

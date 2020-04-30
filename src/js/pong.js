@@ -78,7 +78,7 @@
     loop.slowStep = loop.slow * loop.step;
     initGui();
 
-    timer = setInterval(bonus, 10000);
+    timer = setInterval(bonus,6000);
 
     camera.position.x = paddle1.position.x-50;
     camera.position.z = paddle1.position.z + 50;

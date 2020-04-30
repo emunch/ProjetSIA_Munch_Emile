@@ -74,7 +74,7 @@ function bonus(){
             break;
             case bonuses.SELF_HEAL:
               currBonus = bonuses.SELF_HEAL;
-              document.getElementById("info").textContent="Congratulations: you healed 1HP :)")
+              document.getElementById("info").textContent="Congratulations: you healed 1HP :)";
               if(playerH< 3 && playerH>0){
                 playerH++;
                 switch (playerH){
@@ -126,7 +126,7 @@ function bonus(){
               currBonus = bonuses.ZA_WARUDO;
               paddle12peed=0;
               paddle2Speed=0;
-              let T3 = setTimeout(reset_speed, 1000);
+              let T4 = setTimeout(reset_speed, 5000);
             break;
             default:
                 ("je sais pas ce bonus :", currBonus);
