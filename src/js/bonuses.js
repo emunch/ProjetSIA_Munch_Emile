@@ -23,12 +23,16 @@ function bonus(){
     switch(currBonus){
       case bonuses.SELF_LARGE:
         scene.remove(paddle1);
+        collisions.splice(collisions.indexOf(paddle1),1);
         paddle1.scale.y = 1;
+        collisions.push(paddle1);
         scene.add(paddle1);
       break;
       case bonuses.ENEMY_LARGE:
         scene.remove(paddle2);
+        collisions.splice(collisions.indexOf(paddle2), 1);
         paddle2.scale.y = 1;
+        collisions.push(paddle2);
         scene.add(paddle2);
       break;
       case bonuses.DA_WALL:
@@ -95,14 +99,18 @@ function bonus(){
               document.getElementById("info").textContent="Your paddle is now larger ";
               currBonus = bonuses.SELF_LARGE;
               scene.remove(paddle1);
+              collisions.splice(collisions.indexOf(paddle1), 1);
               paddle1.scale.y = 1.2;
+              collisions.push(paddle1);
               scene.add(paddle1);
             break;
             case bonuses.ENEMY_LARGE:
              document.getElementById("info").textContent="ennemy paddle is now  larger ";
               currBonus = bonuses.ENEMY_LARGE;
               scene.remove(paddle2);
+              collisions.splice(collisions.indexOf(paddle2),1);
               paddle2.scale.y = 1.2;
+              collisions.push(paddle2);
               scene.add(paddle2);
             break;
             case bonuses.ENEMY_STOP:
